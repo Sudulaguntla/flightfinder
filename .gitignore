@@ -1,0 +1,27 @@
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Maven
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# NetBeans (if applicable)
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# VS Code
+.vscode/
+
+# Other common ignores
+*.log
+*.tmp
