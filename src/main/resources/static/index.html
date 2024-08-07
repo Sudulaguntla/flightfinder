@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Finder</title>
+    <script>
+        async function findFlight() {
+            const input = document.getElementById('input').value.trim();
+            if (input === '') {
+                document.getElementById('result').innerText = 'Input cannot be empty';
+                return;
+            }
+            try {
+                const response = await fetch(`/countFlight?input=${encodeURIComponent(input)}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const result = await response.text(); // Read response as text
+                document.getElementById('result').innerText = result;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('result').innerText = 'Error fetching data';
+            }
+        }
+
+        function clearTextBox() {
+            document.getElementById('input').value = '';
+            document.getElementById('result').innerText = ''; // Optionally clear the result as well
+        }
+    </script>
+</head>
+<body>
+<h1>Flight Finder</h1>
+<label for="input">Enter string:</label>
+<input type="text" id="input" maxlength="100">
+<button onclick="findFlight()">Count</button>
+<button onclick="clearTextBox()">Clear</button>
+<p id="result"></p>
+</body>
+</html>
